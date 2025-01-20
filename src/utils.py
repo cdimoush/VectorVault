@@ -7,6 +7,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from langchain_core.documents import Document
 
+from src.html_loader import CustomHTMLLoader
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -31,6 +33,8 @@ def load_file(file_path: str) -> List[Document]:
             loader = Docx2txtLoader(file_path)
         elif file_path.endswith('.txt'):
             loader = TextLoader(file_path)
+        elif file_path.endswith('.html'):
+            loader = CustomHTMLLoader(file_path)
         else:
             logging.warning(f"Unsupported file type for {file_path}")
             return []
@@ -53,6 +57,11 @@ def chunk_document(documents: List[Document]) -> List[Document]:
     try:
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=250)
         chunks = text_splitter.split_documents(documents)
+        
+        # Add a unique chunk_id to each chunk's metadata
+        for idx, chunk in enumerate(chunks):
+            chunk.metadata['chunk_id'] = idx
+        
         logging.info(f"Documents split into {len(chunks)} chunks")
         return chunks
 
@@ -73,10 +82,18 @@ def upload_chunks(chunks: List[Document], vector_store: PineconeVectorStore):
 
 def move_file_to_processed(file_path: str):
     """
-    Moves a file from the unprocessed directory to the processed directory.
+    Moves a file from the unprocessed directory to the processed directory,
+    preserving the directory structure.
     """
     try:
-        dest_path = os.path.join(PROCESSED_DIR, os.path.basename(file_path))
+        # Calculate the relative path from the unprocessed directory
+        relative_path = os.path.relpath(file_path, UNPROCESSED_DIR)
+        dest_path = os.path.join(PROCESSED_DIR, relative_path)
+
+        # Create the destination directory if it doesn't exist
+        os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+
+        # Move the file
         shutil.move(file_path, dest_path)
         logging.info(f"Moved {file_path} to {dest_path}")
 
@@ -94,14 +111,15 @@ def is_file_processed(file_name: str) -> bool:
 
 def get_unprocessed_files() -> List[str]:
     """
-    Retrieves a list of file paths from the unprocessed directory.
+    Retrieves a list of file paths from the unprocessed directory, including subdirectories.
     """
     try:
         files = []
-        for file_name in os.listdir(UNPROCESSED_DIR):
-            file_path = os.path.join(UNPROCESSED_DIR, file_name)
-            if os.path.isfile(file_path) and not file_name.startswith('.'):
-                files.append(file_path)
+        for root, dirs, filenames in os.walk(UNPROCESSED_DIR):
+            for filename in filenames:
+                if not filename.startswith('.'):  # skip hidden files
+                    file_path = os.path.join(root, filename)
+                    files.append(file_path)
         logging.info(f"Found {len(files)} unprocessed files")
         return files
 

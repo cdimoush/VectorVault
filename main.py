@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 def main():
     pinecone = Pinecone()
 
-    index_name = "vector-vault-test-index"
+    index_name = "langchain-test-index"
     existing_indexes = [index_info["name"] for index_info in pinecone.list_indexes()]
 
     if index_name not in existing_indexes:

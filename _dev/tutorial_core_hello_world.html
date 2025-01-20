@@ -1,0 +1,1533 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  
+<!-- Mirrored from docs.omniverse.nvidia.com/isaacsim/latest/core_api_tutorials/tutorial_core_hello_world.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2025 19:11:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Isaac Sim Core Tutorials" name="title" />
+<meta content="lang=en isaac isaac-sim core" name="keywords" />
+
+    <title>Hello World &#8212; Omniverse IsaacSim</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/themee6c2.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrape6c2.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-themee6c2.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.mine6c2.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygmentsacbc.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme06b2.css?v=c5edffae" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom253d.css?v=7abaf8bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton3129.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min7991.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrape6c2.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-themee6c2.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.mine6c2.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options545b.js?v=91d07486"></script>
+    <script src="../_static/doctoolsfd15.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight7f57.js?v=dc90522c"></script>
+    <script src="../_static/scrollspy-patch75e8.js?v=edc4054a"></script>
+    <script src="../_static/external-links181d.js?v=e8b80c26"></script>
+    <script src="../_static/clipboard.min4664.js?v=a7894cd8"></script>
+    <script src="../_static/copybuttona2a6.js?v=65e89d2a"></script>
+    <script src="../_static/design-tabs62df.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'core_api_tutorials/tutorial_core_hello_world';</script>
+    <script src="../_static/version-patch77b8.js?v=c24f8c5d"></script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hello Robot" href="tutorial_core_hello_robot.html" />
+    <link rel="prev" title="Core API" href="index.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Jan 17, 2025"/>
+
+  <script src="../../../../assets.adobedtm.com/b92787824f2e0e9b68dc2e993f9bd995339fe417/satelliteLib-07d828cd547199f009a1a2e885a826d41f4909b5.js"></script>
+
+<!-- OneTrust Cookies Consent Notice start for nvidia.com --><script src="../../../../cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="3e2b62ff-7ae7-4ac5-87c8-d5949ecafff5"></script><script type="text/javascript">function OptanonWrapper(){var event=new Event("bannerLoaded");window.dispatchEvent(event)}</script><!-- OneTrust Cookies Consent Notice end for nvidia.com --><script type="text/javascript" src="../../../../images.nvidia.com/aem-dam/Solutions/ot-js/ot-custom.js"></script>
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="https://docs.omniverse.nvidia.com/isaacsim/latest/search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Take the <a href='https://www.surveymonkey.com/r/J5D6Y6J'>5-minute survey</a> to help us improve our docs.</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.omniverse.nvidia.com/index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="Omniverse IsaacSim - Home"/>
+    <script>document.write(`<img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark" alt="Omniverse IsaacSim - Home"/>`);</script>
+  
+  
+    <p class="title logo__title">Omniverse IsaacSim</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/nvidiaomniverse" title="twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCSKUoczbGAcMld7HjpCR8OA" title="youtube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">youtube</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.instagram.com/nvidiaomniverse" title="instagram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-instagram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">instagram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.nvidia.com/en-us/omniverse/" title="www" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-globe fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">www</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/showcase/nvidia-omniverse" title="linkedin" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">linkedin</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.twitch.tv/nvidiaomniverse" title="twitch" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitch fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitch</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+
+<a class="navbar-brand logo" href="https://docs.omniverse.nvidia.com/index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="Omniverse IsaacSim - Home"/>
+    <script>document.write(`<img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark" alt="Omniverse IsaacSim - Home"/>`);</script>
+  
+  
+    <p class="title logo__title">Omniverse IsaacSim</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/nvidiaomniverse" title="twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCSKUoczbGAcMld7HjpCR8OA" title="youtube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">youtube</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.instagram.com/nvidiaomniverse" title="instagram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-instagram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">instagram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.nvidia.com/en-us/omniverse/" title="www" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-globe fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">www</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/showcase/nvidia-omniverse" title="linkedin" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">linkedin</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.twitch.tv/nvidiaomniverse" title="twitch" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitch fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">twitch</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Isaac Sim</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">What Is Isaac Sim?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../isaac_sim_reference_architecture.html">Isaac Sim Reference Architecture</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../release_notes.html">Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../archived_release_notes.html">4.1.0</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../installation/index.html">Installation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/distributions.html">Isaac Sim Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/requirements.html">Isaac Sim Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/install_workstation.html">Workstation Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/install_container.html">Container Installation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../installation/install_cloud.html">Cloud Deployment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation/install_advanced_cloud_setup_aws.html">AWS Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/install_advanced_cloud_setup_azure.html">Azure Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/install_advanced_cloud_setup_gcp.html">Google Cloud Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/install_advanced_cloud_setup_tencent.html">Tencent Cloud Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/install_advanced_cloud_setup_alibaba.html">Alibaba Cloud Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation/install_advanced_remote_setup.html">Remote Workstation Deployment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/manual_livestream_clients.html">Livestream Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/install_python.html">Python Environment Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/install_ros.html">ROS and ROS 2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/install_faq.html">Setup FAQ</a></li>
+<li class="toctree-l2"><span class="xref std std-doc">dev-guide:linux-troubleshooting</span></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_conventions.html">Isaac Sim Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../isaac_sim_forums.html">Isaac Sim Developer Forums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../isaac_FAQ.html">Frequently Asked Questions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Omniverse, USD, Physics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../shortcuts.html">Omniverse Useful Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_material/reference_tips.html">Tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../open_usd.html">OpenUSD Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation_fundamentals.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_material/speedup_cheat_sheet.html">Isaac Sim Speedup Cheat Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introductory_tutorials/index.html">Isaac Sim UI and Workflow Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introductory_tutorials/tutorial_intro_interface.html">Isaac Sim Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introductory_tutorials/tutorial_intro_workflows.html">Isaac Sim Workflows</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gui_tutorials/index.html">Build Your First Virtual World</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_intro_environment_setup.html">Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_intro_simple_objects.html">Add Simple Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_intro_usd.html">Working with USD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_gui_simple_robot.html">Assemble a Simple Robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_gui_camera_sensors.html">Add Camera and Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_gui_interactive_scripting.html">Interactive Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_gui_omnigraph.html">OmniGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui_tutorials/tutorial_advanced_input_devices.html">OmniGraph: Input Devices</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../development_tools_tutorials.html">Development Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_code_editors.html">Running Python Code from External Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_extension_templates.html">Isaac Sim Extension Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_jupyter.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_python_debugging.html">Debugging With Visual Studio Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_shortcuts.html">Commonly Used Omnigraph Shortcuts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_scripting.html">OmniGraph: Python Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_custom_python_nodes.html">Omnigraph: Custom Python Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_custom_cpp_extensions.html">Custom Extensions: C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_custom_cpp_nodes.html">Omnigraph: Custom C++ Nodes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Core API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_core_hello_robot.html">Hello Robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_core_adding_controller.html">Adding a Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_core_adding_manipulator.html">Adding a Manipulator Robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_core_adding_multiple_robots.html">Adding Multiple Robots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_core_multiple_tasks.html">Multiple Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_advanced_data_logging.html">Data Logging</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../environment_setup_tutorials.html">Scene Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_import_wizard.html">Import Wizard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_import_urdf.html">Import URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_export_urdf.html">Export URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_import_mjcf.html">Import MJCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_shapenet_importer.html">ShapeNet Importer Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_rigging_robot.html">Rigging Robots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_rigging_complex_structures.html">Rigging Complex Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_joint_tuning.html">Tuning Joint Drive Gains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_adding_new_manipulator.html">Adding a New Manipulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_assembling_robots.html">Assembling Robots And Rigid Bodies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_optimizing_asset.html">Asset Optimization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ros_ros2_tutorials.html">ROS and ROS 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ros_tutorials/index.html">ROS Tutorials (Linux Only)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_turtlebot.html">URDF Import: Turtlebot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_drive_turtlebot.html">Driving TurtleBot via ROS messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_camera.html">Cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_clock.html">ROS Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_sensors.html">RTX Lidar Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_tf.html">Transform Trees and Odometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_teleport.html">Teleport Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_navigation.html">ROS Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_multi_navigation.html">Multiple Robot ROS Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_manipulation.html">Joint Control: Extension Python Scripting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_moveit.html">MoveIt Motion Planning Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_custom_message.html">Custom Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_python.html">ROS Bridge in Standalone Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_apriltag.html">April Tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_camera_noise.html">Add Noise to Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_camera_publishing.html">Publishing Camera’s Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_ackermann_controller.html">Ackermann Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros_tutorials/tutorial_ros_ros1_to_ros2.html">ROS 1 to ROS 2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ros2_tutorials/index.html">ROS 2 Tutorials (Linux &amp; Windows)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_turtlebot.html">URDF Import: Turtlebot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_drive_turtlebot.html">Driving TurtleBot via ROS2 messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_camera.html">ROS2 Cameras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_camera_publishing.html">Publishing Camera’s Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_clock.html">ROS2 Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_rtx_lidar.html">RTX Lidar Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_tf.html">ROS2 Transform Trees and Odometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_publish_rate.html">ROS2 Setting Publish Rates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_qos.html">ROS 2 Quality of Service (QoS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_navigation.html">ROS2 Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_multi_navigation.html">Multiple Robot ROS2 Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_manipulation.html">ROS2 Joint Control: Extension Python Scripting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_moveit.html">MoveIt 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_generic_server_client.html">ROS 2 Generic Server and Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_generic_publisher_subscriber.html">ROS 2 Generic Publisher and Subscriber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_prim_service.html">ROS 2 Service for Manipulating Prims Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_python.html">ROS 2 Bridge in Standalone Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_custom_message_python.html">ROS 2 Python Custom Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_custom_omnigraph_node_python.html">ROS 2 Python Custom OmniGraph Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_navigation_block_world.html">ROS 2 Navigation with Block World Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_omnigraph_cpp_node.html">ROS 2 Custom C++ OmniGraph Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_ackermann_controller.html">ROS 2 Ackermann Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_launch.html">ROS 2 Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ros2_tutorials/tutorial_ros2_rtf.html">ROS 2 Publish Real Time Factor (RTF)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../isaac_ros_tutorials.html">Interfacing with NVIDIA Isaac ROS</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../isaac_lab_tutorials/index.html">Isaac Lab</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../isaac_lab_tutorials/tutorial_policy_deployment.html">Deploying Policies in Isaac Sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isaac_lab_tutorials/tutorial_cloner.html">Getting Started with Cloner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isaac_lab_tutorials/tutorial_instanceable_assets.html">Instanceable Assets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../replicator_tutorials/index.html">Replicator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_getting_started.html">Overview and Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_recorder.html">Synthetic Data Recorder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_scene_based_sdg.html">Scene Based Synthetic Dataset Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_object_based_sdg.html">Object Based Synthetic Dataset Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_online_generation.html">Online Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_pose_estimation.html">Pose Estimation Synthetic Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_training_pose_estimation_model.html">Training Pose Estimation Model with Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_amr_navigation.html">Randomization in Simulation – AMR Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_ur10_palletizing.html">Randomization in Simulation – UR10 Palletizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_augmentation.html">Data Augmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_isaac_randomizers.html">Randomization Snippets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_custom_og_randomizer.html">Custom Replicator Randomization Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_isaac_snippets.html">Useful Snippets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_sceneblox.html">Scene Generation with SceneBlox</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_omni_replicator_agent.html">Agent Simulation Synthetic Data Generation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-agent/camera_calibration.html">Camera Calibration (Omni.Replicator.Agent.Camera_calibration)</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../replicator_tutorials/ext_replicator-agent/camera_control.html">Camera Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../replicator_tutorials/ext_replicator-agent/camera_calibration.html">Camera Calibration (Omni.Replicator.Agent.Camera_calibration)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-agent/agent_control.html">Agent Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-agent/writer_control.html">Writer Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-agent/customization.html">Customization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../replicator_tutorials/tutorial_replicator_object.html">Object Detection Synthetic Data Generation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/setting.html">Setting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/mutable.html">Mutable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/geometry.html">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/light.html">Light</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/mutable_attribute.html">Mutable Attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/transformation.html">Transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/harmonizer.html">Harmonizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replicator_tutorials/ext_replicator-object/macro.html">Macro</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_tutorials/tutorials_advanced_motion_generation.html">Motion Generation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_motion_generation_robot_description_editor.html">Lula Robot Description and XRDF Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_motion_generation_rmpflow.html">Lula RMPflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_motion_generation_rrt.html">Lula RRT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_motion_generation_lula_kinematics.html">Lula Kinematics Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_motion_generation_lula_trajectory_generator.html">Lula Trajectory Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_configure_rmpflow_denso.html">Configuring RMPflow for a New Manipulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_pickplace_controller.html">OmniGraph: Pick-and-Place Controller Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_curobo.html">cuRobo and cuMotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_grasp_editor.html">Grasp Editor</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extensions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features/environment_setup/index.html">Scene Setup and Assets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../features/environment_setup/assets/index.html">Isaac Sim Assets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/environment_setup/assets/usd_assets_overview.html">Isaac Sim Assets Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/environment_setup/assets/usd_assets_environments.html">Environment Assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/environment_setup/assets/usd_assets_robots.html">Robot Assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/environment_setup/assets/usd_assets_sensors.html">Sensor Assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/environment_setup/assets/usd_assets_props.html">Prop Assets</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/environment_setup/assets/usd_assets_featured.html">Featured Assets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../landing_pages/nova_carter_landing_page.html">Nova Carter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../common/formats.html"><span class="doc">Formats</span></a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_import_wizard.html">Import Wizard</a></li>
+<li class="toctree-l2"><span class="xref std std-doc">extensions:ext_onshape</span></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/environment_setup/ext_omni_isaac_urdf.html">URDF Importer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/external_communication/ext_omni_exporter_urdf.html">USD to URDF Exporter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/environment_setup/ext_omni_isaac_mjcf.html">MJCF Importer</a></li>
+<li class="toctree-l2"><span class="xref std std-doc">extensions:ext_cad-converter</span></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/environment_setup/ext_omni_isaac_shapenet.html">ShapeNet Importer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/environment_setup/ext_omni_isaac_merge_mesh.html">Merge Mesh Utility</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features/robots_simulation/index.html">Robot Simulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/robots_simulation/ext_omni_isaac_quadruped.html">Quadruped Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/robots_simulation/ext_omni_isaac_articulation_inspector.html">(DEPRECATED) Articulation Inspector Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/robots_simulation/ext_omni_isaac_surface_gripper.html">Surface Gripper Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/robots_simulation/ext_omni_isaac_gain_tuner.html">Gain Tuner Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/robots_simulation/ext_omni_isaac_inspect_physics.html">Simulation Data Visualizer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features/sensors_simulation/index.html">Sensors Simulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../features/sensors_simulation/sensor_simulation_perception_sensors.html">Perception Based Sensor Extensions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_camera.html">Camera Sensors and Render Extensions</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_lidar.html">RTX Lidar Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_lidar/node_overview.html">RTX Lidar Action Graph Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_lidar/node_descriptions.html">RTX Lidar Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_lidar/annotator_descriptions.html">RTX Lidar Synthetic Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_sensor_materials.html">RTX Sensor Visual Materials</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_radar.html">RTX Radar Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_radar/node_overview.html">RTX Radar Action Graph Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_radar/node_descriptions.html">RTX Radar Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_based_radar/annotator_descriptions.html">RTX Radar Synthetic Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_rtx_sensor_materials.html">RTX Sensor Visual Materials</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/common_extension.html">Omniverse Common Extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/lidar_extension.html">Omniverse Lidar Extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/radar_extension.html">Omniverse Radar Extension</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/materials_extension/index.html">Omniverse Materials Extension</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/materials_extension/materials_extension.html">Materials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/materials_extension/material_manager.html">Material Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../features/sensors_simulation/omni_sensors_docs/materials_extension/custom_materials.html">Custom Materials</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/ext_omni_isaac_range_sensor.html">Range Sensor Extension (Lidar, Ultrasonic, Generic Range)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_range_sensor_lidar.html">Using Sensors: LIDAR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_range_sensor_generic.html">Using Sensors: Generic Range Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_range_sensor_ultrasonic.html">Using Sensors: Ultrasonic</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../features/sensors_simulation/sensor_simulation_physics_sensors.html">Physics Based Sensors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_physics_based_contact.html">Contact Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_isaac_contact_sensor.html">Using Sensors: Contact Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_contact_sensor.html">OmniGraph: Contact Sensor Node</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_physics_based_imu.html">IMU Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_isaac_imu_sensor.html">Using Sensors: IMU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_imu_sensor.html">OmniGraph: Imu Sensor Node</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_physics_based_effort.html">Effort Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_isaac_effort_sensor.html">Using Sensors: Effort Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../advanced_tutorials/tutorial_advanced_omnigraph_effort_sensor.html">OmniGraph: Effort Sensor Node</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_physics_articulation_force.html">Articulation Joint Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_proximity.html">Proximity Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/sensors_simulation/isaac_sim_sensors_physics_based_lightbeam.html">Lightbeam Sensor</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features/debugging/index.html">Debugging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/debugging/ext_omni_isaac_debug_drawing.html">Debug Drawing Extension API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/debugging/ext_omni_kit_commands.html">Omniverse Commands Tool Extension</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../features/ext_omni_isaac_occupancy_map.html">Mapping</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features/warehouse_logistics/index.html">Warehouse Logistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/warehouse_logistics/ext_omni_warehouse_creator.html">Warehouse Creator Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/warehouse_logistics/ext_omni_isaac_conveyor.html">Conveyor Belt Utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/warehouse_logistics/tutorial_static_assets.html">Using Static Warehouse Assets in Isaac Sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/warehouse_logistics/ext_omni_anim_people.html">Omni.Anim.People</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/warehouse_logistics/logistics_tutorial_cuopt.html">Using NVIDIA cuOpt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../concepts/motion_generation/index.html">Motion Generation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/motion_gen_api.html">Motion Generation Extension API Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/kinematics_solver.html">Kinematics Solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/trajectory_interface.html">Trajectory Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/path_planner.html">Path Planner Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/lula_rrt.html">Lula RRT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/motion_policy.html">Motion Policy Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/rmpflow.html">RMPflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/motion_generation/rmpflow_tuning_guide.html">RMPflow Tuning Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cortex_tutorials/index.html">Cortex</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_1_overview.html">Isaac Cortex: Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_2_decider_networks.html">Decider networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_3_example_peck_games.html">Behavior Examples: Peck Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_4_franka_block_stacking.html">Walkthrough: Franka Block Stacking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_5_ur10_bin_stacking.html">Walkthrough: UR10 Bin Stacking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_6_ros_synchronization.html">ROS Synchronization (Linux Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cortex_tutorials/tutorial_cortex_7_cortex_extension.html">Building Cortex Based Extensions</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scripting Guides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../manual_standalone_python.html">Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/environment_setup.html">Scene Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/robots_simulation.html">Robot Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/util_snippets.html">Util Snippets</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference_python_api.html">API Documentation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference_glossary.html">Omniverse Isaac Sim Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_material/reference_keyboard_shortcuts.html">Keyboard Shortcuts Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference_material/reference_user_interface.html">User Interface Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference_material/menu_create.html">Isaac Create Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_material/menu_examples.html">Isaac Examples Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_material/menu_replicator.html">Isaac Replicator Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_material/menu_utilities.html">Isaac Utilities Menu</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../old_docs.html">Previous Documentation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Omniverse Common</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../common/glossary-of-terms.html">Omniverse Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/feedback.html">Feedback and Forums</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../common/legal.html">Omniverse Licenses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../common/NVIDIA_Omniverse_License_Agreement.html">Omniverse License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/licensing-notices-disclaimers.html">Licensing Disclaimer</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common/product-licenses.html">Product Licenses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../common/product-licenses/omniverse-launcher.html">omniverse-launcher</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../common/product-licenses/omniverse-launcher/omniverse-launcher-1.9.8-licenses-manifest.html">1.9.8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../common/product-licenses/usd-explorer.html">usd-explorer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../common/product-licenses/usd-explorer/usd-explorer-2023.2.0-licenses-manifest.html">2023.2.0</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/licenses.html">Other Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common/redistributable-ov-software.html">Redistributable Omniverse Software</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Core API</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Hello World</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="hello-world">
+<span id="isaac-sim-app-tutorial-core-hello-world"></span><h1>Hello World<a class="headerlink" href="#hello-world" title="Link to this heading">#</a></h1>
+<p><span class="xref std std-doc">NVIDIA Omniverse™ Kit</span>, the toolkit that Omniverse Isaac Sim uses to build its applications, provides a Python interpreter for scripting. This means every single GUI command, as well as many additional functions are available as Python APIs. However, the learning curve for interfacing with Omniverse Kit using Pixar’s USD Python API is steep and steps are frequently tedious. Therefore we’ve provided a set of APIs that are designed to be used in robotics applications, APIs that abstract away the complexity of USD APIs and merge multiple steps into one for frequently performed tasks.</p>
+<p>In this tutorial, we will present the concepts of Core APIs and how to use them. We will start with adding a cube to an empty stage, and we’ll build upon it to create a scene with multiple robots executing mulitple tasks simultaneously, as seen below.</p>
+<div id="kaltura_player_527981958" style="width: 560px;height: 395px"></div>
+    <script type="text/javascript" src="https://cdnapisec.kaltura.com/p/2935771/embedPlaykitJs/uiconf_id/53712482"></script>
+    <script type="text/javascript">
+    try {
+        var kalturaPlayer = KalturaPlayer.setup({
+        targetId: "kaltura_player_527981958",
+        provider: {
+            partnerId: 2935771,
+            uiConfId: 53712482
+        }
+        });
+        kalturaPlayer.loadMedia({entryId: '1_dmbnc7ig'});
+    } catch (e) {
+        console.error(e.message)
+    }
+    </script><section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>This tutorial series introduces the Core API. After this tutorial, you learn:</p>
+<ul class="simple">
+<li><p>Creating a <em>World</em> and <em>Scene</em> as defined by the Core API.</p></li>
+<li><p>How to add a rigid body to the <a class="reference internal" href="../reference_glossary.html#isaac-sim-glossary-stage"><span class="std std-ref">Stage</span></a> and simulate it using python in Omniverse Isaac Sim.</p></li>
+<li><p>The difference between running python in an <strong>Extension Workflow</strong> vs a <strong>Standalone Workflow</strong>, and in <strong>Jupyter Notebook</strong>.</p></li>
+</ul>
+<p><em>10-15 Minute Tutorial</em></p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p><strong>Prerequisites</strong></p>
+<ul class="simple">
+<li><p>Intermediate knowledge in Python and asynchronous programming is required for this tutorial.</p></li>
+<li><p>Please download and install <a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a> prior to beginning this tutorial.</p></li>
+<li><p>Please review <a class="reference internal" href="../introductory_tutorials/tutorial_intro_interface.html#isaac-sim-app-tutorial-intro-interface"><span class="std std-ref">Isaac Sim Interface</span></a> and <a class="reference internal" href="../introductory_tutorials/tutorial_intro_workflows.html#isaac-sim-app-tutorial-intro-workflows"><span class="std std-ref">Isaac Sim Workflows</span></a> prior to beginning this tutorial.</p></li>
+</ul>
+<p>Begin by opening the <em>Hello World</em> example.</p>
+<ol class="arabic simple">
+<li><p>Go to the top menu bar and click <strong>Isaac Examples &gt; Hello World</strong>.</p></li>
+<li><p>Verify that the window for the <em>Hello World</em> example extension is visible in the workspace.</p></li>
+<li><p>Click the <strong>Open Source Code</strong> button to launch the source code for editing in <a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a>.</p></li>
+</ol>
+<div id="kaltura_player_647461928" style="width: 560px;height: 395px"></div>
+    <script type="text/javascript" src="https://cdnapisec.kaltura.com/p/2935771/embedPlaykitJs/uiconf_id/53712482"></script>
+    <script type="text/javascript">
+    try {
+        var kalturaPlayer = KalturaPlayer.setup({
+        targetId: "kaltura_player_647461928",
+        provider: {
+            partnerId: 2935771,
+            uiConfId: 53712482
+        }
+        });
+        kalturaPlayer.loadMedia({entryId: '1_co6oni6r'});
+    } catch (e) {
+        console.error(e.message)
+    }
+    </script><p>4. Click the <strong>Open Containing Folder</strong> button to open the directory containing the example files.
+This folder contains three files: <code class="code docutils literal notranslate"><span class="pre">hello_world.py</span></code>, <code class="code docutils literal notranslate"><span class="pre">hello_world_extension.py</span></code>, and <code class="code docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">hello_world.py</span></code> script is where the logic of the application will be added, while the UI
+elements of the application will be added in <code class="code docutils literal notranslate"><span class="pre">hello_world_extension.py</span></code> script and thus
+linked to the logic.</p>
+<ol class="arabic simple">
+<li><p>Click the <strong>LOAD</strong> button to load the World.</p></li>
+<li><p>click <strong>File &gt; New From Stage Template &gt; Empty</strong> to create a new stage, click <strong>Don’t Save</strong> when prompted to save the current stage.</p></li>
+<li><p>Click the <strong>LOAD</strong> button to load the World again.</p></li>
+<li><p>Open <code class="code docutils literal notranslate"><span class="pre">hello_world.py</span></code> and press “Ctrl+S” to use the hot-reload feature. You will
+notice that the menu disappears from the workspace (because it was restarted).</p></li>
+<li><p>Open the example menu again and click the <strong>LOAD</strong> button.</p></li>
+</ol>
+<p>Now you can begin adding to this example.</p>
+</section>
+<section id="code-overview">
+<h2>Code Overview<a class="headerlink" href="#code-overview" title="Link to this heading">#</a></h2>
+<p>This example inherits from BaseSample, which is a boilerplate extension application that
+sets up the basics for every robotics extension application. The following are a few examples of the
+actions BaseSample performs:</p>
+<ol class="arabic simple">
+<li><p>Loading the world with its corresponding assets using a button.</p></li>
+<li><p>Clearing the world when a new stage is created.</p></li>
+<li><p>Resetting the world’s objects to their default states.</p></li>
+<li><p>Handling hot reloading.</p></li>
+</ol>
+<p><a class="reference internal" href="../reference_glossary.html#isaac-sim-glossary-world"><span class="std std-ref">World</span></a> is the core class that enables you to interact with the simulator
+in an easy and modular way. It handles many time-related events such as adding callbacks,
+stepping physics,  resetting the scene, adding tasks (this will be covered later in
+<a class="reference internal" href="tutorial_core_adding_manipulator.html#isaac-sim-app-tutorial-core-adding-manipulator"><span class="std std-ref">Adding a Manipulator Robot</span></a>), etc.</p>
+<p>A world contains an instance of a <a class="reference internal" href="../reference_glossary.html#isaac-sim-glossary-scene"><span class="std std-ref">Scene</span></a>. The Scene class manages
+simulation assets of interest in the USD <a class="reference internal" href="../reference_glossary.html#isaac-sim-glossary-stage"><span class="std std-ref">Stage</span></a>. It provides an easy
+API to add, manipulate, inspect, and reset different USD assets in the stage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.base_sample</span> <span class="kn">import</span> <span class="n">BaseSample</span> <span class="c1">#boiler plate of a robotics extension application</span>
+</span><span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">BaseSample</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="linenos"> 6</span>        <span class="k">return</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># This function is called to setup the assets in the scene for the first time</span>
+<span class="linenos"> 9</span>    <span class="c1"># Class variables should not be assigned here, since this function is not called</span>
+<span class="linenos">10</span>    <span class="c1"># after a hot-reload, its only called to load the world starting from an EMPTY stage</span>
+<span class="linenos">11</span>    <span class="k">def</span> <span class="nf">setup_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">12</span>        <span class="c1"># A world is defined in the BaseSample, can be accessed everywhere EXCEPT __init__</span>
+<span class="hll"><span class="linenos">13</span>        <span class="n">world</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos">14</span>        <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span> <span class="c1"># adds a default ground plane to the scene</span>
+</span><span class="linenos">15</span>        <span class="k">return</span>
+</pre></div>
+</div>
+<section id="singleton-world">
+<h3>Singleton World<a class="headerlink" href="#singleton-world" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../reference_glossary.html#isaac-sim-glossary-world"><span class="std std-ref">World</span></a> is a Singleton, which means only one World can exist while running
+Omniverse Isaac Sim. The code below demonstrates how to retrieve the current instance of the World across
+different files and extensions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.base_sample</span> <span class="kn">import</span> <span class="n">BaseSample</span>
+<span class="hll"><span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">omni.isaac.core</span> <span class="kn">import</span> <span class="n">World</span>
+</span><span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">BaseSample</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 6</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="linenos"> 7</span>        <span class="k">return</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">setup_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="hll"><span class="linenos">10</span>        <span class="n">world</span> <span class="o">=</span> <span class="n">World</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+</span><span class="linenos">11</span>        <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span>
+<span class="linenos">12</span>        <span class="k">return</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-to-the-scene">
+<h2>Adding to the Scene<a class="headerlink" href="#adding-to-the-scene" title="Link to this heading">#</a></h2>
+<p>Use the Python API to add a cube as a rigid body to the scene.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.base_sample</span> <span class="kn">import</span> <span class="n">BaseSample</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="c1"># Can be used to create a new cube or to point to an already existing cube in stage.</span>
+<span class="hll"><span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">omni.isaac.core.objects</span> <span class="kn">import</span> <span class="n">DynamicCuboid</span>
+</span><span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">BaseSample</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="linenos"> 9</span>        <span class="k">return</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="k">def</span> <span class="nf">setup_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">12</span>        <span class="n">world</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+<span class="linenos">13</span>        <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span>
+<span class="hll"><span class="linenos">14</span>        <span class="n">fancy_cube</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">15</span>            <span class="n">DynamicCuboid</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">16</span>                <span class="n">prim_path</span><span class="o">=</span><span class="s2">&quot;/World/random_cube&quot;</span><span class="p">,</span> <span class="c1"># The prim path of the cube in the USD stage</span>
+</span><span class="hll"><span class="linenos">17</span>                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fancy_cube&quot;</span><span class="p">,</span> <span class="c1"># The unique name used to retrieve the object from the scene later on</span>
+</span><span class="hll"><span class="linenos">18</span>                <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span> <span class="c1"># Using the current stage units which is in meters by default.</span>
+</span><span class="hll"><span class="linenos">19</span>                <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">]),</span> <span class="c1"># most arguments accept mainly numpy arrays.</span>
+</span><span class="hll"><span class="linenos">20</span>                <span class="n">color</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span> <span class="c1"># RGB channels, going from 0-1</span>
+</span><span class="hll"><span class="linenos">21</span>            <span class="p">))</span>
+</span><span class="linenos">22</span>        <span class="k">return</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Press <strong>Ctrl+S</strong> to save the code and hot-reload Omniverse Isaac Sim.</p></li>
+<li><p>Open the menu again.</p></li>
+<li><p>click <strong>File &gt; New From Stage Template &gt; Empty</strong>, then the <strong>LOAD</strong> button. You need to perform this action
+if you change anything in the <strong>setup_scene</strong>. Otherwise, you only need to press the
+<strong>LOAD</strong> button.</p></li>
+<li><p>Press the <strong>PLAY</strong> button to start simulating the dynamic cube and see it falling.</p></li>
+</ol>
+<div id="kaltura_player_876767348" style="width: 560px;height: 395px"></div>
+    <script type="text/javascript" src="https://cdnapisec.kaltura.com/p/2935771/embedPlaykitJs/uiconf_id/53712482"></script>
+    <script type="text/javascript">
+    try {
+        var kalturaPlayer = KalturaPlayer.setup({
+        targetId: "kaltura_player_876767348",
+        provider: {
+            partnerId: 2935771,
+            uiConfId: 53712482
+        }
+        });
+        kalturaPlayer.loadMedia({entryId: '1_1fwanokk'});
+    } catch (e) {
+        console.error(e.message)
+    }
+    </script><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every time the code is edited or changed, press <strong>Ctrl+S</strong> to save the code and hot-reload
+Omniverse Isaac Sim.</p>
+</div>
+</section>
+<section id="inspecting-object-properties">
+<h2>Inspecting Object Properties<a class="headerlink" href="#inspecting-object-properties" title="Link to this heading">#</a></h2>
+<p>Print the world pose and velocity of the cube. The highlighted lines show how you can get the objects using the name and query their properties.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.base_sample</span> <span class="kn">import</span> <span class="n">BaseSample</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">omni.isaac.core.objects</span> <span class="kn">import</span> <span class="n">DynamicCuboid</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">BaseSample</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="linenos"> 8</span>        <span class="k">return</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">def</span> <span class="nf">setup_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="n">world</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+<span class="linenos">12</span>        <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span>
+<span class="linenos">13</span>        <span class="n">fancy_cube</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">14</span>            <span class="n">DynamicCuboid</span><span class="p">(</span>
+<span class="linenos">15</span>                <span class="n">prim_path</span><span class="o">=</span><span class="s2">&quot;/World/random_cube&quot;</span><span class="p">,</span>
+<span class="linenos">16</span>                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fancy_cube&quot;</span><span class="p">,</span>
+<span class="linenos">17</span>                <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="linenos">18</span>                <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">]),</span>
+<span class="linenos">19</span>                <span class="n">color</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="linenos">20</span>            <span class="p">))</span>
+<span class="linenos">21</span>        <span class="k">return</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="c1"># Here we assign the class&#39;s variables</span>
+<span class="linenos">24</span>    <span class="c1"># this function is called after load button is pressed</span>
+<span class="linenos">25</span>    <span class="c1"># regardless starting from an empty stage or not</span>
+<span class="linenos">26</span>    <span class="c1"># this is called after setup_scene and after</span>
+<span class="linenos">27</span>    <span class="c1"># one physics time step to propagate appropriate</span>
+<span class="linenos">28</span>    <span class="c1"># physics handles which are needed to retrieve</span>
+<span class="linenos">29</span>    <span class="c1"># many physical properties of the different objects</span>
+<span class="linenos">30</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">setup_post_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">31</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+<span class="hll"><span class="linenos">32</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_cube</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s2">&quot;fancy_cube&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">33</span>        <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cube</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos">34</span>        <span class="n">linear_velocity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cube</span><span class="o">.</span><span class="n">get_linear_velocity</span><span class="p">()</span>
+</span><span class="linenos">35</span>        <span class="c1"># will be shown on terminal</span>
+<span class="linenos">36</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube position is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+<span class="linenos">37</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube&#39;s orientation is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">orientation</span><span class="p">))</span>
+<span class="linenos">38</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube&#39;s linear velocity is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">linear_velocity</span><span class="p">))</span>
+<span class="linenos">39</span>        <span class="k">return</span>
+</pre></div>
+</div>
+</div></blockquote>
+<section id="continuously-inspecting-the-object-properties-during-simulation">
+<h3>Continuously Inspecting the Object Properties during Simulation<a class="headerlink" href="#continuously-inspecting-the-object-properties-during-simulation" title="Link to this heading">#</a></h3>
+<p>Print the world pose and velocity of the cube during simulation at every physics step
+executed. As mentioned in <a class="reference internal" href="../introductory_tutorials/tutorial_intro_workflows.html#isaac-sim-app-tutorial-intro-workflows"><span class="std std-ref">Isaac Sim Workflows</span></a>, in this workflow the
+application is running asynchronously and can’t control when to step physics. However, you can add
+callbacks to ensure certain things happen before certain events.</p>
+<p>Add a physics callback as follows:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.base_sample</span> <span class="kn">import</span> <span class="n">BaseSample</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">omni.isaac.core.objects</span> <span class="kn">import</span> <span class="n">DynamicCuboid</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">BaseSample</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="linenos"> 8</span>        <span class="k">return</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">def</span> <span class="nf">setup_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="n">world</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+<span class="linenos">12</span>        <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span>
+<span class="linenos">13</span>        <span class="n">fancy_cube</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">14</span>            <span class="n">DynamicCuboid</span><span class="p">(</span>
+<span class="linenos">15</span>                <span class="n">prim_path</span><span class="o">=</span><span class="s2">&quot;/World/random_cube&quot;</span><span class="p">,</span>
+<span class="linenos">16</span>                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fancy_cube&quot;</span><span class="p">,</span>
+<span class="linenos">17</span>                <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="linenos">18</span>                <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">]),</span>
+<span class="linenos">19</span>                <span class="n">color</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="linenos">20</span>            <span class="p">))</span>
+<span class="linenos">21</span>        <span class="k">return</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">setup_post_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">24</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span>
+<span class="linenos">25</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_cube</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s2">&quot;fancy_cube&quot;</span><span class="p">)</span>
+<span class="hll"><span class="linenos">26</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">add_physics_callback</span><span class="p">(</span><span class="s2">&quot;sim_step&quot;</span><span class="p">,</span> <span class="n">callback_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">print_cube_info</span><span class="p">)</span> <span class="c1">#callback names have to be unique</span>
+</span><span class="linenos">27</span>        <span class="k">return</span>
+<span class="linenos">28</span>
+<span class="hll"><span class="linenos">29</span>    <span class="c1"># here we define the physics callback to be called before each physics step, all physics callbacks must take</span>
+</span><span class="hll"><span class="linenos">30</span>    <span class="c1"># step_size as an argument</span>
+</span><span class="hll"><span class="linenos">31</span>    <span class="k">def</span> <span class="nf">print_cube_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">32</span>        <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cube</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos">33</span>        <span class="n">linear_velocity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cube</span><span class="o">.</span><span class="n">get_linear_velocity</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos">34</span>        <span class="c1"># will be shown on terminal</span>
+</span><span class="hll"><span class="linenos">35</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube position is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">36</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube&#39;s orientation is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">orientation</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">37</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube&#39;s linear velocity is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">linear_velocity</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="adding-a-new-example-in-the-menu">
+<h2>Adding a New Example in the Menu<a class="headerlink" href="#adding-a-new-example-in-the-menu" title="Link to this heading">#</a></h2>
+<p>Create a new example under the <strong>Isaac Examples</strong> menu.</p>
+<ol class="arabic">
+<li><p>Copy the current files to the <code class="docutils literal notranslate"><span class="pre">user_examples</span></code> folder under <code class="docutils literal notranslate"><span class="pre">omni/isaac/examples</span></code>.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd exts/omni.isaac.examples/omni/isaac/examples</span>
+<span class="go">cp hello_world/hello_world* user_examples/</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit the <code class="code docutils literal notranslate"><span class="pre">exts/omni.isaac.examples/omni/isaac/examples/user_examples/__init__.py</span></code> file by adding the following lines.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.user_examples.hello_world</span> <span class="kn">import</span> <span class="n">HelloWorld</span>
+<span class="linenos">2</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.user_examples.hello_world_extension</span> <span class="kn">import</span> <span class="n">HelloWorldExtension</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit the <code class="code docutils literal notranslate"><span class="pre">exts/omni.isaac.examples/omni/isaac/examples/user_examples/hello_world_extension.py</span></code> file as follows:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.base_sample</span> <span class="kn">import</span> <span class="n">BaseSampleExtension</span>
+<span class="hll"><span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">omni.isaac.examples.user_examples</span> <span class="kn">import</span> <span class="n">HelloWorld</span>
+</span><span class="linenos"> 4</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">HelloWorldExtension</span><span class="p">(</span><span class="n">BaseSampleExtension</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">def</span> <span class="nf">on_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ext_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">on_startup</span><span class="p">(</span><span class="n">ext_id</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">start_extension</span><span class="p">(</span>
+<span class="linenos">10</span>            <span class="n">menu_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos">11</span>            <span class="n">submenu_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="hll"><span class="linenos">12</span>            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Awesome Example&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">13</span>            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My Awesome Example&quot;</span><span class="p">,</span>
+</span><span class="linenos">14</span>            <span class="n">doc_link</span><span class="o">=</span><span class="s2">&quot;https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/tutorial_core_hello_world.html&quot;</span><span class="p">,</span>
+<span class="linenos">15</span>            <span class="n">overview</span><span class="o">=</span><span class="s2">&quot;This Example introduces the user on how to do cool stuff with Isaac Sim through scripting in asynchronous mode.&quot;</span><span class="p">,</span>
+<span class="linenos">16</span>            <span class="n">file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+<span class="linenos">17</span>            <span class="n">sample</span><span class="o">=</span><span class="n">HelloWorld</span><span class="p">(),</span>
+<span class="linenos">18</span>        <span class="p">)</span>
+<span class="linenos">19</span>        <span class="k">return</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<div id="kaltura_player_462741456" style="width: 560px;height: 395px"></div>
+    <script type="text/javascript" src="https://cdnapisec.kaltura.com/p/2935771/embedPlaykitJs/uiconf_id/53712482"></script>
+    <script type="text/javascript">
+    try {
+        var kalturaPlayer = KalturaPlayer.setup({
+        targetId: "kaltura_player_462741456",
+        provider: {
+            partnerId: 2935771,
+            uiConfId: 53712482
+        }
+        });
+        kalturaPlayer.loadMedia({entryId: '1_s7t5800t'});
+    } catch (e) {
+        console.error(e.message)
+    }
+    </script><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every time the code is edited or changed, Press <strong>Ctrl+S</strong> to save the code and hot-reload Omniverse Isaac Sim.</p>
+</div>
+</section>
+<section id="converting-the-example-to-a-standalone-application">
+<span id="isaac-sim-app-tutorial-core-jupyter-section"></span><h2>Converting the Example to a Standalone Application<a class="headerlink" href="#converting-the-example-to-a-standalone-application" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>On windows use python.bat instead of python.sh</p></li>
+<li><p>The details of how python.sh works below are similar to how python.bat works</p></li>
+</ul>
+</div>
+<p>As mentioned in <a class="reference internal" href="../introductory_tutorials/tutorial_intro_workflows.html#isaac-sim-app-tutorial-intro-workflows"><span class="std std-ref">Isaac Sim Workflows</span></a>, in this workflow, the robotics
+application is started when launched from Python right away, and you can control when to step
+physics and rendering.</p>
+<ol class="arabic">
+<li><p>Open a new <code class="docutils literal notranslate"><span class="pre">my_application.py</span></code> file and add the following:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="c1">#launch Isaac Sim before any other imports</span>
+</span><span class="hll"><span class="linenos"> 2</span><span class="c1">#default first two lines in any standalone application</span>
+</span><span class="hll"><span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">isaacsim</span> <span class="kn">import</span> <span class="n">SimulationApp</span>
+</span><span class="hll"><span class="linenos"> 4</span><span class="n">simulation_app</span> <span class="o">=</span> <span class="n">SimulationApp</span><span class="p">({</span><span class="s2">&quot;headless&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span> <span class="c1"># we can also run as headless.</span>
+</span><span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">omni.isaac.core</span> <span class="kn">import</span> <span class="n">World</span>
+<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">omni.isaac.core.objects</span> <span class="kn">import</span> <span class="n">DynamicCuboid</span>
+<span class="linenos"> 8</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">world</span> <span class="o">=</span> <span class="n">World</span><span class="p">()</span>
+<span class="linenos">11</span><span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span>
+<span class="linenos">12</span><span class="n">fancy_cube</span> <span class="o">=</span>  <span class="n">world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">13</span>    <span class="n">DynamicCuboid</span><span class="p">(</span>
+<span class="linenos">14</span>        <span class="n">prim_path</span><span class="o">=</span><span class="s2">&quot;/World/random_cube&quot;</span><span class="p">,</span>
+<span class="linenos">15</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fancy_cube&quot;</span><span class="p">,</span>
+<span class="linenos">16</span>        <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="linenos">17</span>        <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">,</span> <span class="mf">0.5015</span><span class="p">]),</span>
+<span class="linenos">18</span>        <span class="n">color</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
+<span class="linenos">19</span>    <span class="p">))</span>
+<span class="hll"><span class="linenos">20</span><span class="c1"># Resetting the world needs to be called before querying anything related to an articulation specifically.</span>
+</span><span class="hll"><span class="linenos">21</span><span class="c1"># Its recommended to always do a reset after adding your assets, for physics handles to be propagated properly</span>
+</span><span class="hll"><span class="linenos">22</span><span class="n">world</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</span><span class="linenos">23</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+<span class="linenos">24</span>    <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span> <span class="o">=</span> <span class="n">fancy_cube</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+<span class="linenos">25</span>    <span class="n">linear_velocity</span> <span class="o">=</span> <span class="n">fancy_cube</span><span class="o">.</span><span class="n">get_linear_velocity</span><span class="p">()</span>
+<span class="linenos">26</span>    <span class="c1"># will be shown on terminal</span>
+<span class="linenos">27</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube position is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+<span class="linenos">28</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube&#39;s orientation is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">orientation</span><span class="p">))</span>
+<span class="linenos">29</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cube&#39;s linear velocity is : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">linear_velocity</span><span class="p">))</span>
+<span class="hll"><span class="linenos">30</span>    <span class="c1"># we have control over stepping physics and rendering in this workflow</span>
+</span><span class="hll"><span class="linenos">31</span>    <span class="c1"># things run in sync</span>
+</span><span class="hll"><span class="linenos">32</span>    <span class="n">world</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># execute one physics step and one rendering step</span>
+</span><span class="linenos">33</span>
+<span class="hll"><span class="linenos">34</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># close Isaac Sim</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Run it using <code class="docutils literal notranslate"><span class="pre">./python.sh</span> <span class="pre">./exts/omni.isaac.examples/omni/isaac/examples/user_examples/my_application.py</span></code>.</p></li>
+</ol>
+</section>
+<section id="converting-the-example-to-a-standalone-application-using-jupyter-notebook">
+<h2>Converting the Example to a Standalone Application using Jupyter Notebook<a class="headerlink" href="#converting-the-example-to-a-standalone-application-using-jupyter-notebook" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Jupyter notebook support is currently Linux only.</p></li>
+</ul>
+</div>
+<ol class="arabic">
+<li><p>Open a Jupyter notebook.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./jupyter_notebook.sh standalone_examples/notebooks/hello_world.ipynb</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Access the notebook through the browser as shown on the terminal.</p></li>
+<li><p>Execute the first cell in the notebook.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">livesync_usd</span></code> path to a proper value as indicated in the comments.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">getpass</span>
+<span class="linenos">2</span><span class="n">user</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
+<span class="linenos">3</span><span class="kn">from</span> <span class="nn">isaacsim</span> <span class="kn">import</span> <span class="n">SimulationApp</span>
+<span class="linenos">4</span><span class="c1"># Set the path below to your desired nucleus server</span>
+<span class="linenos">5</span><span class="c1"># Make sure you installed a local nucleus server before this</span>
+<span class="linenos">6</span><span class="n">simulation_app</span> <span class="o">=</span> <span class="n">SimulationApp</span><span class="p">({</span><span class="s2">&quot;livesync_usd&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;omniverse://localhost/Users/</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s1">/temp_jupyter_stage.usd&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Open the same USD file after launching Isaac Sim through the launcher or the terminal and
+turn the live syncing option on in the <strong>Layer</strong> tab.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>DON’T</strong> press <strong>play</strong>, <strong>pause</strong>, or <strong>stop</strong> in the GUI while in this workflow.</p>
+</div>
+<figure class="align-center">
+<img alt="../_images/isaac_sim_live_sync.gif" src="../_images/isaac_sim_live_sync.gif" />
+</figure>
+</div></blockquote>
+</li>
+<li><p>Run through the rest of the cells in the notebook, while viewing the stage directly in the
+Omniverse Isaac Sim GUI.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>A render call is needed at the end of each cell to propagate the changes to the synced USD (that is: <code class="docutils literal notranslate"><span class="pre">World.render</span></code> or <code class="docutils literal notranslate"><span class="pre">SimulationContext.render</span></code>).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">world.clear()</span></code> or the <code class="docutils literal notranslate"><span class="pre">clear_stage</span></code> function (from the <code class="docutils literal notranslate"><span class="pre">omni.isaac.core.utils.stage</span></code> module) at the beginning of a cell for iterative development.</p></li>
+</ul>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>This tutorial covered the following topics:</p>
+<ol class="arabic simple">
+<li><p>Overview of the <code class="code docutils literal notranslate"><span class="pre">World</span></code> and <code class="code docutils literal notranslate"><span class="pre">Scene</span></code> classes.</p></li>
+<li><p>Adding content to the Scene via Python.</p></li>
+<li><p>Adding callbacks.</p></li>
+<li><p>Accessing dynamic properties for objects.</p></li>
+<li><p>The main differences in a standalone application.</p></li>
+<li><p>The main differences when developing an application using Jupyter.</p></li>
+</ol>
+<section id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h3>
+<p>Continue to <a class="reference internal" href="tutorial_core_hello_robot.html#isaac-sim-app-tutorial-core-hello-robot"><span class="std std-ref">Hello Robot</span></a> to learn how to add a robot to the simulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The next tutorials will be developed mainly using the extensions application workflow.
+However, conversion to other workflows is similar given what was covered
+in this tutorial.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Core API</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tutorial_core_hello_robot.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hello Robot</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-overview">Code Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singleton-world">Singleton World</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-to-the-scene">Adding to the Scene</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-object-properties">Inspecting Object Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuously-inspecting-the-object-properties-during-simulation">Continuously Inspecting the Object Properties during Simulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-example-in-the-menu">Adding a New Example in the Menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-the-example-to-a-standalone-application">Converting the Example to a Standalone Application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-the-example-to-a-standalone-application-using-jupyter-notebook">Converting the Example to a Standalone Application using Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrape6c2.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-themee6c2.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com/">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2023-2025, NVIDIA Corporation.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item"><p class="last-updated">
+  Last updated on Jan 17, 2025.
+  <br/>
+</p></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+
+<!-- Mirrored from docs.omniverse.nvidia.com/isaacsim/latest/core_api_tutorials/tutorial_core_hello_world.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2025 19:11:42 GMT -->
+</html>
